@@ -1,0 +1,34 @@
+:root {
+	--breakpoint-default: 760px;
+	--breakpoint: var(--breakpoint-default)
+}
+
+@media screen and (min-width: 760px) {
+	:root {
+	 --breakpoint: 760px;
+ }
+}
+
+@media screen and (min-width: 1024px) {
+	:root {
+	 --breakpoint: 1024px;
+ }
+}
+
+@media screen and (min-width: 1200px) {
+	:root {
+	 --breakpoint: 1200px;
+ }
+}
+
+@media screen and (min-width: 1440px) {
+	:root {
+	 --breakpoint: 1440px;
+ }
+}
+
+@media screen and (min-width: 1680px) {
+	:root {
+	 --breakpoint: 1680px;
+ }
+}
