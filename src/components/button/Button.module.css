@@ -1,0 +1,14 @@
+button {
+    height: 2rem;
+    width: 3rem;
+    margin: 0.5rem;
+    padding: 0.25rem;
+}
+
+.primary {
+    background-color: darkgreen;
+}
+
+.primary:disabled {
+    background-color: lightgray;
+}
