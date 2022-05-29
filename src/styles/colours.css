@@ -1,0 +1,19 @@
+:root {
+	--clr-text: #ffffff;
+
+	--clr-primary-50: #e8eaf6;
+	--clr-primary-100: #c5cae9;
+	--clr-primary-200: #9fa8da;
+	--clr-primary-300: #7986cb;
+	--clr-primary-400: #5c6bc0;
+	--clr-primary-500: #3f51b5;
+	--clr-primary-600: #3949ab;
+	--clr-primary-700: #303f9f;
+	--clr-primary-800: #283593;
+	--clr-primary-900: #1a237e;
+
+	--clr-primary-100-accent: #8c9eff;
+	--clr-primary-200-accent: #536dfe;
+	--clr-primary-400-accent: #3d5afe;
+	--clr-primary-700-accent: #304ffe;
+}

@@ -1,17 +1,21 @@
 import React from "react";
-import Button from "./components/button/Button";
-import { Container } from "./components/container/Container";
 
-const alertUser = () => {
-  alert("here");
-};
+import { Container } from "./components/container/Container";
+import Layout from "./components/Layout/Layout";
+import VideoPlayer from "./components/videoPlayer/VideoPlayer";
 
 const App: React.FC = () => {
   return (
     <Container>
-      <Button isBtnDisabled={false} btnOnClick={alertUser}>
-        Play
-      </Button>
+      <Layout>
+        <div>
+          <VideoPlayer />
+        </div>
+
+        <div>
+          <p>Comments section</p>
+        </div>
+      </Layout>
     </Container>
   );
 };
