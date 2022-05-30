@@ -7,7 +7,7 @@
 }
 
 .play-btn--primary {
-	color: var(--clr-text);
+	color: var(--clr-text-50);
   background-color: var(--clr-primary-700);
 }
 

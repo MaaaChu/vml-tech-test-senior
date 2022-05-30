@@ -1,0 +1,14 @@
+.comments-section {
+	padding: var(--spacing-8);
+	background-color: var(--clr-text-50);
+	border-radius: var(--rounded);
+	filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+}
+
+.comments-section__heading {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	gap: var(--spacing-3);
+}

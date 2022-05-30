@@ -1,6 +1,4 @@
 :root {
-	--clr-text: #ffffff;
-
 	--clr-primary-50: #e8eaf6;
 	--clr-primary-100: #c5cae9;
 	--clr-primary-200: #9fa8da;
@@ -16,4 +14,15 @@
 	--clr-primary-200-accent: #536dfe;
 	--clr-primary-400-accent: #3d5afe;
 	--clr-primary-700-accent: #304ffe;
+
+	--clr-text-50: #f9fafb;
+	--clr-text-100: #f3f4f6;
+	--clr-text-200: #e5e7eb;
+	--clr-text-300: #d1d5db;
+	--clr-text-400: #9ca3af;
+	--clr-text-500: #6b7280;
+	--clr-text-600: #4b5563;
+	--clr-text-700: #374151;
+	--clr-text-800: #1f2937;
+	--clr-text-900: #111827;
 }

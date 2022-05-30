@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import { VideoPlayerState } from "../types/Types";
+import { VideoPlayerState, VideoData } from "../types/Types";
 
 const useVideoPlayer = (
   videoElement: React.RefObject<HTMLVideoElement>
 ): [
   VideoPlayerState,
   (newVideoId: number) => void,
-  (newVideoSrc: string) => void,
+  (newVideoData: VideoData) => void,
   () => void,
   () => void,
   (event: React.ChangeEvent<HTMLInputElement>) => void,
@@ -15,7 +15,12 @@ const useVideoPlayer = (
 ] => {
   const [videoPlayerState, setPlayerState] = useState({
     videoId: 1,
-    videoSrc: "",
+    videoData: {
+      author: "",
+      id: 1,
+      src: "",
+      title: "",
+    },
     isPlaying: false,
     progress: 0,
     speed: 1,
@@ -30,10 +35,10 @@ const useVideoPlayer = (
     }));
   };
 
-  const setVideoSrc = (newVideoSrc: string) => {
+  const setVideoData = (newVideoData: VideoData) => {
     setPlayerState((prevPlayerState) => ({
       ...prevPlayerState,
-      videoSrc: newVideoSrc,
+      videoData: newVideoData,
     }));
   };
 
@@ -89,7 +94,7 @@ const useVideoPlayer = (
   return [
     videoPlayerState,
     setVideoId,
-    setVideoSrc,
+    setVideoData,
     togglePlay,
     toggleMute,
     handleVideoSpeed,

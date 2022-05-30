@@ -1,0 +1,18 @@
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  margin: 0;
+  border-radius: var(--rounded);
+}
+
+.badge__text {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.badge--primary {
+  color: var(--clr-text-50);
+  background-color: var(--clr-primary-500);
+}

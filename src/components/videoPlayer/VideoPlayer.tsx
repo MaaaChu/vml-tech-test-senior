@@ -1,33 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
 import VideoPlayerLoading from "./VideoPlayerLoading";
 import PlayButton from "../playButton/PlayButton";
 import styles from "./VideoPlayer.module.css";
 
-import useVideoPlayer from "../../hooks/useVideoPlayer";
-
-import { PlayBtnDisplayed } from "../../types/Types";
+import { VideoPlayerState, PlayBtnDisplayed } from "../../types/Types";
 
 interface VideoPlayerProps {
-  videoSrc?: string;
-  videoElement?: React.RefObject<HTMLVideoElement>;
-  isLoading?: boolean;
+  videoPlayerState: VideoPlayerState;
+  videoElementRef?: React.RefObject<HTMLVideoElement>;
+  togglePlay: () => void;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = () => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({
+  videoPlayerState,
+  videoElementRef,
+  togglePlay,
+}) => {
   const [displayPlayBtn, setDisplayPlayBtn] =
     useState<PlayBtnDisplayed>("not-displayed");
-  const videoElementRef = useRef<HTMLVideoElement>(null);
-  const [
-    videoPlayerState,
-    setVideoId,
-    setVideoSrc,
-    togglePlay,
-    toggleMute,
-    handleVideoSpeed,
-    setIsLoading,
-  ] = useVideoPlayer(videoElementRef);
 
   const showButton = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
@@ -39,38 +30,25 @@ const VideoPlayer: React.FC<VideoPlayerProps> = () => {
     setDisplayPlayBtn("not-displayed");
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(
-        `https://my-json-server.typicode.com/jordansb/video-api/videos/${videoPlayerState.videoId}`
-      )
-      .then((response) => {
-        if (response.status !== 200) {
-          console.log("Oh noo");
-          return;
-        }
-        setVideoSrc(response.data.src);
-        setIsLoading(false);
-      });
-  }, [videoPlayerState.videoId]);
-
   return (
     <div
       className={styles["video-player"]}
-      onMouseEnter={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+      onPointerEnter={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
         showButton(e)
       }
-      onMouseLeave={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+      onPointerLeave={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
         hideButton(e)
       }
     >
-      {videoPlayerState.isLoading || !videoPlayerState.videoSrc ? (
+      {videoPlayerState.isLoading || !videoPlayerState.videoData.src ? (
         <VideoPlayerLoading />
       ) : (
         <>
           <video ref={videoElementRef} controls={false}>
-            <source src={videoPlayerState.videoSrc} type="video/webm"></source>
+            <source
+              src={videoPlayerState.videoData.src}
+              type="video/webm"
+            ></source>
           </video>
           <PlayButton
             isPlaying={videoPlayerState.isPlaying}
