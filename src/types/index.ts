@@ -9,11 +9,7 @@ export type VideoPlayerState = {
   videoId: number;
   videoData: VideoData;
   isPlaying: boolean;
-  progress: number;
-  speed: number;
-  isMuted: boolean;
-  isLoading: boolean;
-  error: string;
+	isVideoReady: boolean;
 };
 
 export type VideoComment = {

@@ -23,6 +23,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({
   const [videoComments, setVideoComments] = useState<VideoComment[]>([]);
   const [activeBtnId, setActiveBtnId] = useState<string>("new-first");
 
+  // If I had more time I would make this into a custom hook as well
   const fetchComments = async () => {
     axios.get(COMMENTS_URL).then((response) => {
       if (response.status !== 200) {

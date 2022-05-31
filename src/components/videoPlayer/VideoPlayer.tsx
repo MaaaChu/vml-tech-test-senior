@@ -10,12 +10,14 @@ interface VideoPlayerProps {
   videoPlayerState: VideoPlayerState;
   videoElementRef?: React.RefObject<HTMLVideoElement>;
   togglePlay: () => void;
+  isLoading: boolean;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   videoPlayerState,
   videoElementRef,
   togglePlay,
+  isLoading,
 }) => {
   const [displayPlayBtn, setDisplayPlayBtn] =
     useState<BtnDisplayed>("not-displayed");
@@ -40,7 +42,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         hideButton(e)
       }
     >
-      {videoPlayerState.isLoading || !videoPlayerState.videoData.src ? (
+      {isLoading || !videoPlayerState.videoData.src ? (
         <VideoPlayerLoading />
       ) : (
         <>
@@ -51,7 +53,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             ></source>
           </video>
           <PlayButton
-            isBtnDisabled={videoPlayerState.isLoading}
+            isBtnDisabled={isLoading}
             btnDisplayed={displayPlayBtn}
             btnOnClick={togglePlay}
           >

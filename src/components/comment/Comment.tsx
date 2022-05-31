@@ -21,7 +21,9 @@ const Comment: React.FC<CommentProps> = ({ text, user, upvotes, date }) => {
     <div className={styles.comment}>
       <div className={styles["comment__header"]}>
         <Heading size="heading-3">{user}</Heading>
-        <Text colour="secondary">{commentTime}</Text>
+        <Text size="text-sm" colour="secondary">
+          {commentTime}
+        </Text>
       </div>
       <div className={styles["comment__body"]}>
         <Text>{text}</Text>

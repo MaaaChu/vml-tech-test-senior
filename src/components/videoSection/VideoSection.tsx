@@ -11,23 +11,28 @@ interface VideoSectionProps {
   videoPlayerState: VideoPlayerState;
   videoElementRef: React.RefObject<HTMLVideoElement>;
   togglePlay: () => void;
+  isLoading: boolean;
+  error: string;
 }
 
 const VideoSection: React.FC<VideoSectionProps> = ({
   videoPlayerState,
   videoElementRef,
   togglePlay,
+  isLoading,
+  error,
 }) => {
   return (
     <div className={styles["video-section"]}>
-      {videoPlayerState.error.length > 0 ? (
-        <Alert message={videoPlayerState.error} />
+      {error.length > 0 ? (
+        <Alert message={error} />
       ) : (
         <>
           <VideoPlayer
             videoPlayerState={videoPlayerState}
             videoElementRef={videoElementRef}
             togglePlay={togglePlay}
+            isLoading={isLoading}
           />
           <VideoInfo
             videoTitle={videoPlayerState.videoData.title}

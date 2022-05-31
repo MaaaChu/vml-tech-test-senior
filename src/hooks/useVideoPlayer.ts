@@ -9,10 +9,7 @@ const useVideoPlayer = (
   (videoId: number) => void,
   (videoData: VideoData) => void,
   () => void,
-  () => void,
-  (event: React.ChangeEvent<HTMLInputElement>) => void,
-  (isLoading: boolean) => void,
-  (error: string) => void
+  (isVideoReady: boolean) => void
 ] => {
   const [videoPlayerState, setPlayerState] = useState({
     videoId: 1,
@@ -23,11 +20,7 @@ const useVideoPlayer = (
       title: "",
     },
     isPlaying: false,
-    progress: 0,
-    speed: 1,
-    isMuted: false,
-    isLoading: true,
-    error: "",
+    isVideoReady: false
   });
 
   const setVideoId = (videoId: number) => {
@@ -59,44 +52,11 @@ const useVideoPlayer = (
     }
   }, [videoPlayerState.isPlaying, videoElement]);
 
-  const toggleMute = () => {
+
+  const setIsVideoReady = (isVideoReady: boolean) => {
     setPlayerState((prevPlayerState) => ({
       ...prevPlayerState,
-      isMuted: !prevPlayerState.isMuted,
-    }));
-  };
-
-  useEffect(() => {
-    if (videoElement && videoElement.current) {
-      videoPlayerState.isMuted
-        ? (videoElement.current.muted = true)
-        : (videoElement.current.muted = false);
-    }
-  }, [videoPlayerState.isMuted, videoElement]);
-
-  const handleVideoSpeed = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSpeed = Number(event.target.value);
-    if (videoElement && videoElement.current) {
-      setPlayerState({
-        ...videoPlayerState,
-        speed: newSpeed,
-      });
-    } else {
-      // TODO: throw error
-    }
-  };
-
-  const setIsLoading = (isLoading: boolean) => {
-    setPlayerState((prevPlayerState) => ({
-      ...prevPlayerState,
-      isLoading,
-    }));
-  };
-
-  const setError = (error: string) => {
-    setPlayerState((prevPlayerState) => ({
-      ...prevPlayerState,
-      error,
+      isVideoReady,
     }));
   };
 
@@ -105,10 +65,7 @@ const useVideoPlayer = (
     setVideoId,
     setVideoData,
     togglePlay,
-    toggleMute,
-    handleVideoSpeed,
-    setIsLoading,
-    setError,
+    setIsVideoReady
   ];
 };
 
