@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components:PlayButton should match snapshot when play button is disabled 1`] = `
+<button
+  class="btn btn--primary btn--displayed btn--play"
+  disabled=""
+  type="button"
+>
+  Play
+</button>
+`;
+
+exports[`components:PlayButton should match snapshot when play button is primary 1`] = `
+<button
+  class="btn btn--primary btn--displayed btn--play"
+  disabled=""
+  type="button"
+>
+  Play
+</button>
+`;
+
+exports[`components:PlayButton should match snapshot when play button is secondary 1`] = `
+<button
+  class="btn btn--secondary btn--displayed btn--play"
+  disabled=""
+  type="button"
+>
+  Play
+</button>
+`;
+
+exports[`components:PlayButton should match snapshot when play button type isnt given 1`] = `
+<button
+  class="btn btn--primary btn--displayed btn--play"
+  disabled=""
+  type="button"
+>
+  Play
+</button>
+`;
+
+exports[`components:PlayButton should match snapshot with string children 1`] = `
+<button
+  class="btn btn--primary btn--displayed btn--play"
+  type="button"
+>
+  Play
+</button>
+`;

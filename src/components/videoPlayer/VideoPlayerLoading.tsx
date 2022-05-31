@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./VideoPlayer.module.css";
+import Lottie from "lottie-react";
+import spinnerAnimation from "../../assets/spinner.json";
 
 const VideoPlayerLoading = (): JSX.Element => {
   return (
-    <div className={styles["video-player--loading"]}>
-      <h1>Video Loading</h1>
-    </div>
+    <Lottie animationData={spinnerAnimation} loop={true} autoplay={true} />
   );
 };
 

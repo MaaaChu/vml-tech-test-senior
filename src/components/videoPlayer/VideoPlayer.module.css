@@ -8,10 +8,6 @@
   border-radius: var(--rounded);
 }
 
-.video-player--loading {
-	text-align: center;
-}
-
 .video-player__wrapper {
 	width: 100%;
 	height: 100%;

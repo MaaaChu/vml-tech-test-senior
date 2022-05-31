@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import VideoPlayerLoading from "./VideoPlayerLoading";
 import PlayButton from "../buttons/playButton/PlayButton";
+import Video from "./Video";
+
 import styles from "./VideoPlayer.module.css";
 
 import { VideoPlayerState, BtnDisplayed } from "../../types";
@@ -46,12 +48,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <VideoPlayerLoading />
       ) : (
         <>
-          <video ref={videoElementRef} controls={false}>
-            <source
-              src={videoPlayerState.videoData.src}
-              type="video/webm"
-            ></source>
-          </video>
+          <Video
+            videoElementRef={videoElementRef}
+            videoPlayerState={videoPlayerState}
+          />
           <PlayButton
             isBtnDisabled={isLoading}
             btnDisplayed={displayPlayBtn}
