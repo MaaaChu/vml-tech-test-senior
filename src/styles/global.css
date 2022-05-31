@@ -14,10 +14,6 @@ body {
 	background-color: #f3f4f6;
 }
 
-#root {
-	min-height: 100vh;
-}
-
 p,
 pre,
 blockquote,

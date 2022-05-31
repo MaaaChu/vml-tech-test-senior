@@ -14,7 +14,7 @@ const VideoInfo: React.FC<VideoInfoProps> = ({ videoTitle, videoAuthor }) => {
       <Heading size="heading-1" colour="primary">
         {videoTitle}
       </Heading>
-      <Heading size="heading-3" colour="secondary">
+      <Heading size="heading-4" colour="secondary">
         {videoAuthor}
       </Heading>
     </div>

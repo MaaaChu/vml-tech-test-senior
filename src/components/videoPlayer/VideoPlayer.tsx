@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import VideoPlayerLoading from "./VideoPlayerLoading";
-import PlayButton from "../playButton/PlayButton";
+import PlayButton from "../buttons/playButton/PlayButton";
 import styles from "./VideoPlayer.module.css";
 
-import { VideoPlayerState, PlayBtnDisplayed } from "../../types/Types";
+import { VideoPlayerState, BtnDisplayed } from "../../types";
 
 interface VideoPlayerProps {
   videoPlayerState: VideoPlayerState;
@@ -18,7 +18,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   togglePlay,
 }) => {
   const [displayPlayBtn, setDisplayPlayBtn] =
-    useState<PlayBtnDisplayed>("not-displayed");
+    useState<BtnDisplayed>("not-displayed");
 
   const showButton = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
@@ -51,11 +51,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             ></source>
           </video>
           <PlayButton
-            isPlaying={videoPlayerState.isPlaying}
             isBtnDisabled={videoPlayerState.isLoading}
             btnDisplayed={displayPlayBtn}
             btnOnClick={togglePlay}
-          />
+          >
+            {videoPlayerState.isPlaying ? "Pause" : "Play"}
+          </PlayButton>
         </>
       )}
     </div>

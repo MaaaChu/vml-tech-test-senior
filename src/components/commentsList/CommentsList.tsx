@@ -1,10 +1,26 @@
 import React from "react";
 import Comment from "../comment/Comment";
 
-const CommentsList = () => {
+import { VideoComment } from "../../types";
+
+interface CommentsListProps {
+  videoComments?: VideoComment[];
+}
+
+const CommentsList: React.FC<CommentsListProps> = ({ videoComments }) => {
+  if (!videoComments || videoComments.length === 0) return null;
+
   return (
     <div>
-      <Comment comment="Great Project" />
+      {videoComments.map((videoComment) => (
+        <Comment
+          key={videoComment.id}
+          text={videoComment.text}
+          user={videoComment.user}
+          upvotes={videoComment.upvotes}
+          date={videoComment.date}
+        />
+      ))}
     </div>
   );
 };

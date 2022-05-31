@@ -1,4 +1,6 @@
 :root {
+	--clr-white: #ffffff;
+
 	--clr-primary-50: #e8eaf6;
 	--clr-primary-100: #c5cae9;
 	--clr-primary-200: #9fa8da;
@@ -25,4 +27,7 @@
 	--clr-text-700: #374151;
 	--clr-text-800: #1f2937;
 	--clr-text-900: #111827;
+
+	--clr-error: #ef4444;
+	--clr-text-error: var(--clr-error);
 }

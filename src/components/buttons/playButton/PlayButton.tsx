@@ -3,19 +3,17 @@ import classNames from "classnames";
 
 import styles from "./PlayButton.module.css";
 
-import { PlayBtnDisplayed } from "../../types/Types";
+import { ButtonProps } from "../../../interfaces";
 
-interface PlayButtonProps {
-  isPlaying: boolean;
-  isBtnDisabled: boolean;
-  btnDisplayed: PlayBtnDisplayed;
-  btnOnClick: () => void;
+interface PlayButtonProps extends ButtonProps {
+  btnOnClick?: () => void;
 }
 
 const PlayButton: React.FC<PlayButtonProps> = ({
-  isPlaying,
+  children,
+  type = "primary",
   isBtnDisabled,
-  btnDisplayed,
+  btnDisplayed = "displayed",
   btnOnClick,
 }) => {
   return (
@@ -23,13 +21,14 @@ const PlayButton: React.FC<PlayButtonProps> = ({
       type="button"
       disabled={isBtnDisabled}
       className={classNames(
-        styles["play-btn"],
-        styles["play-btn--primary"],
-        styles[`play-btn--${btnDisplayed}`]
+        "btn",
+        `btn--${type}`,
+        `btn--${btnDisplayed}`,
+        styles["btn--play"]
       )}
       onClick={btnOnClick}
     >
-      {isPlaying ? "Pause" : "Play"}
+      {children}
     </button>
   );
 };

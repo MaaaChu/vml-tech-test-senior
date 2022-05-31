@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-import { VideoPlayerState, VideoData } from "../types/Types";
+import { VideoPlayerState, VideoData } from "../types";
 
 const useVideoPlayer = (
   videoElement: React.RefObject<HTMLVideoElement>
 ): [
   VideoPlayerState,
-  (newVideoId: number) => void,
-  (newVideoData: VideoData) => void,
+  (videoId: number) => void,
+  (videoData: VideoData) => void,
   () => void,
   () => void,
   (event: React.ChangeEvent<HTMLInputElement>) => void,
-  (isLoading: boolean) => void
+  (isLoading: boolean) => void,
+  (error: string) => void
 ] => {
   const [videoPlayerState, setPlayerState] = useState({
     videoId: 1,
@@ -26,19 +27,20 @@ const useVideoPlayer = (
     speed: 1,
     isMuted: false,
     isLoading: true,
+    error: "",
   });
 
-  const setVideoId = (newVideoId: number) => {
+  const setVideoId = (videoId: number) => {
     setPlayerState((prevPlayerState) => ({
       ...prevPlayerState,
-      videoId: newVideoId,
+      videoId,
     }));
   };
 
-  const setVideoData = (newVideoData: VideoData) => {
+  const setVideoData = (videoData: VideoData) => {
     setPlayerState((prevPlayerState) => ({
       ...prevPlayerState,
-      videoData: newVideoData,
+      videoData,
     }));
   };
 
@@ -91,6 +93,13 @@ const useVideoPlayer = (
     }));
   };
 
+  const setError = (error: string) => {
+    setPlayerState((prevPlayerState) => ({
+      ...prevPlayerState,
+      error,
+    }));
+  };
+
   return [
     videoPlayerState,
     setVideoId,
@@ -99,6 +108,7 @@ const useVideoPlayer = (
     toggleMute,
     handleVideoSpeed,
     setIsLoading,
+    setError,
   ];
 };
 

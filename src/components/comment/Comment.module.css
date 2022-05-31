@@ -1,0 +1,29 @@
+.comment {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: var(--spacing-6);
+}
+
+.comment__header {
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: var(--spacing-2);
+	margin-bottom: var(--spacing-1-5);
+}
+
+.comment__body {
+	margin-bottom: var(--spacing-2);
+}
+
+.comment__upvotes {
+	display: inline-flex;
+}
+
+.comment__upvotes__icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-right: var(--spacing-1);
+	color: var(--clr-text-500);
+	fill: var(--clr-text-500);
+}

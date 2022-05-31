@@ -3,5 +3,14 @@
 	padding-top: var(--spacing-10);
 	display: grid;
 	grid-template-columns: 5fr 2fr;
-	column-gap: var(--spacing-10);
+	column-gap: var(--spacing-8);
+}
+
+@media screen and (max-width: 760px) {
+	.layout {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		row-gap: var(--spacing-10);
+	}
 }

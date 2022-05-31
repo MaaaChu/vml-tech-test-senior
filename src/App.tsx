@@ -3,11 +3,11 @@ import axios from "axios";
 
 import { Container } from "./components/container/Container";
 import Layout from "./components/Layout/Layout";
-import VideoInfo from "./components/videoInfo/VideoInfo";
-import VideoPlayer from "./components/videoPlayer/VideoPlayer";
+import VideoSection from "./components/videoSection/VideoSection";
+import CommentsSection from "./components/commentsSection/CommentsSection";
 
 import useVideoPlayer from "./hooks/useVideoPlayer";
-import CommentsSection from "./components/commentsSection/CommentsSection";
+import { VIDEO_URL } from "./constants";
 
 const App: React.FC = () => {
   const videoElementRef = useRef<HTMLVideoElement>(null);
@@ -19,40 +19,46 @@ const App: React.FC = () => {
     toggleMute,
     handleVideoSpeed,
     setIsLoading,
+    setError,
   ] = useVideoPlayer(videoElementRef);
+
+  const fetchVideo = () => {
+    axios
+      .get(`${VIDEO_URL}${videoPlayerState.videoId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          setError("Unsuccessful response when fetching video");
+        } else {
+          setVideoData(response.data);
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        setError(`Could fetch video ${error}`);
+      });
+  };
 
   useEffect(() => {
     setIsLoading(true);
-    axios
-      .get(
-        `https://my-json-server.typicode.com/jordansb/video-api/videos/${videoPlayerState.videoId}`
-      )
-      .then((response) => {
-        if (response.status !== 200) {
-          console.log("Oh noo");
-          return;
-        }
-        setVideoData(response.data);
-        setIsLoading(false);
-      });
+    fetchVideo();
   }, [videoPlayerState.videoId]);
+
+  const checkIsVideoReady = () => {
+    return !videoPlayerState.isLoading && videoPlayerState.error.length <= 0;
+  };
 
   return (
     <Container>
       <Layout>
-        <div>
-          <VideoPlayer
-            videoPlayerState={videoPlayerState}
-            videoElementRef={videoElementRef}
-            togglePlay={togglePlay}
-          />
-          <VideoInfo
-            videoTitle={videoPlayerState.videoData.title}
-            videoAuthor={videoPlayerState.videoData.author}
-          />
-        </div>
-
-        <CommentsSection />
+        <VideoSection
+          videoPlayerState={videoPlayerState}
+          videoElementRef={videoElementRef}
+          togglePlay={togglePlay}
+        />
+        <CommentsSection
+          videoId={videoPlayerState.videoId}
+          isVideoReady={checkIsVideoReady()}
+        />
       </Layout>
     </Container>
   );

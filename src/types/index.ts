@@ -13,6 +13,16 @@ export type VideoPlayerState = {
   speed: number;
   isMuted: boolean;
   isLoading: boolean;
+  error: string;
 };
 
-export type PlayBtnDisplayed = "displayed" | "not-displayed";
+export type VideoComment = {
+	date: number;
+	id: number;
+	text: string;
+	upvotes: number;
+	user: string;
+	video_id: number;
+}
+
+export type BtnDisplayed = "displayed" | "not-displayed";
